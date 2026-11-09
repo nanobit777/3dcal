@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% block title %}Configuración · PrintControl 3D{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="mb-4">
+            <h3 class="mb-1">Configuración de tarifas</h3>
+            <p class="text-secondary mb-0">Estos valores se usan en todos los cálculos nuevos.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                            {% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-check-lg"></i> Guardar configuración
+                        </button>
+                        <a href="{% url 'calculator' %}" class="btn btn-outline-secondary">Volver a la calculadora</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

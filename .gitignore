@@ -1,0 +1,22 @@
+# Entorno virtual
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Base de datos y respaldos locales
+db.sqlite3
+backups/
+
+# Archivos generados
+media/
+staticfiles/
+.runserver.pid
+*.log
+
+# Entorno y editores
+.env
+.vscode/
+.idea/
